@@ -1,0 +1,1 @@
+# django-university-information-system
