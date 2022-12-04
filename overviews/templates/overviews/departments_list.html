@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+<br>
+    <h4 style="text-align:center;">ALL DEPARTMENTS</h4>
+<br>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Faculty</th>
+            <th scope="col">Department</th>
+            <th scope="col">Department Code</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for dep in departments_list %}
+            <tr>
+                <th scope="row">{{dep.faculty}}</th>
+                <td> <a href="/overviews/curriculum/{{dep.id}}">{{dep.department}}</a>
+                    </td>
+                <td>{{dep.department_code}}</td>
+              </tr>
+            {% endfor %}
+
+          
+        </tbody>
+      </table>
+
+</div>
+
+{% endblock body %}

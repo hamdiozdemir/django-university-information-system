@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+<div class="container">
+
+    <br>
+    <h4>CURRICULUM OF THE {{data.department}} DEPARTMENT</h4>
+    <br>
+
+    <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">TERM</th>
+            <th scope="col">CODE</th>
+            <th scope="col">TITLE</th>
+            <th scope="col">TH</th>
+            <th scope="col">PH</th>
+            <th scope="col">ECTS</th>
+            <th scope="col">TYPE</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for cur in data %}
+            <tr>
+                <th scope="row">{{cur.term}}</th>
+                <td>{{cur.code}} </td>
+                <td>{{cur.title}}</td>
+                <td>{{cur.theortical_hours}}</td>
+                <td>{{cur.practical_hours}}</td>
+                <td>{{cur.ects}}</td>
+                <td>{{cur.course_type}}</td>
+              </tr>
+            {% endfor %}
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>blank</td>
+                <td></td>
+                <td>99</td>
+                <td></td>
+                <td></td>
+              </tr>
+          
+        </tbody>
+      </table>
+
+      <br>
+      <br>
+      <br>
+      <i>* TH: Theorotical Hours <br>* PH: Practical Hours </i>
+</div>
+
+{% endblock body %}

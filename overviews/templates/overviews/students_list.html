@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="container">
+<h4 style="text-align:center;">ALL STUDENTS</h4>
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">School ID</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Faculty</th>
+            <th scope="col">Department</th>
+            <th scope="col">Advisor</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for student in students_list %}
+            <tr>
+                <th scope="row">{{student.school_id}}</th>
+                <td>{{student.first_name}}</td>
+                <td>{{student.last_name}}</td>
+                <td>{{student.faculty}}</td>
+                <td>{{student.department}}</td>
+                <td>{{student.advisor}}</td>
+                {% if student.status == "Active" %}
+                <td><b style="color:green;">{{student.status}}</b></td>
+                {% else %}
+                <td>{{student.status}}</td>
+                {% endif %}
+              </tr>
+            {% endfor %}
+
+          
+        </tbody>
+      </table>
+
+
+
+
+
+
+</div>
+
+{% endblock body %}
