@@ -43,18 +43,3 @@ class AddCurriculumView(SuccessMessageMixin, CreateView):
     success_url = reverse_lazy("registrations:curriculums_form")
     success_message = "Course has added."
 
-
-# def deneme(request, depid):
-#     data = Curriculums.objects.filter(department_id = depid)
-#     var = {"data":data}
-#     return render(request,"registrations/cur.html",context=var)
-    
-
-# ÖRNEK DEF - yanında aldığı num1, num2 kısmı, lklsdf.com/num1/num2 aslında
-# path kısmına da tabiki <int:num1>/<int:num2> yazıyorsun.
-# def add_view(request,num1,num2):
-#     add_result = num1+num2
-#     result = f"{add_result}"
-#     return HttpResponse(str(result))
-
-    

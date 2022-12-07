@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
+from django.db.models import Sum
 
 from registrations.models import Students, Departments, Curriculums
 
@@ -16,6 +17,17 @@ class DepartmentsListView(ListView):
     template_name = "overviews/departments_list.html"
 
 def curriculum_view(request, dep_id):
-    data = Curriculums.objects.filter(department_id = dep_id)
-    var = {"data":data}
+    curriculum_data = Curriculums.objects.filter(department_id = dep_id).order_by('term')
+    curriculum_hours_sum = curriculum_data.aggregate(Sum('theortical_hours'))
+    practical_hours_sum = curriculum_data.aggregate(Sum('practical_hours'))
+    ects_sum = curriculum_data.aggregate(Sum('ects'))
+    var = {
+        "curriculum_data":curriculum_data, "curriculum_hours_sum":curriculum_hours_sum,
+        "practical_hours_sum":practical_hours_sum,
+        "ects_sum":ects_sum
+        }
     return render(request,"overviews/curriculum.html",context=var)
+
+
+class StudentsDetailView(DetailView):
+    model = Students

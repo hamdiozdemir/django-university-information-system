@@ -13,34 +13,36 @@
         <thead>
           <tr>
             <th scope="col">TERM</th>
+            <th scope="col">TYPE</th>
             <th scope="col">CODE</th>
             <th scope="col">TITLE</th>
             <th scope="col">TH</th>
             <th scope="col">PH</th>
             <th scope="col">ECTS</th>
-            <th scope="col">TYPE</th>
           </tr>
         </thead>
         <tbody>
-            {% for cur in data %}
+            {% for cur in curriculum_data %}
             <tr>
                 <th scope="row">{{cur.term}}</th>
+                <td>{{cur.course_type}}</td>
                 <td>{{cur.code}} </td>
                 <td>{{cur.title}}</td>
                 <td>{{cur.theortical_hours}}</td>
                 <td>{{cur.practical_hours}}</td>
                 <td>{{cur.ects}}</td>
-                <td>{{cur.course_type}}</td>
               </tr>
             {% endfor %}
             <tr>
                 <th scope="row"></th>
                 <td></td>
-                <td>blank</td>
                 <td></td>
-                <td>99</td>
-                <td></td>
-                <td></td>
+                <td><b>TOTAL</b></td>
+                <td><b>{{curriculum_hours_sum.theortical_hours__sum}}</b></td>
+                <td><b>{{practical_hours_sum.practical_hours__sum}}</b></td>
+                <td><b>{{ects_sum.ects__sum}}</b></td>
+
+
               </tr>
           
         </tbody>
@@ -49,7 +51,7 @@
       <br>
       <br>
       <br>
-      <i>* TH: Theorotical Hours <br>* PH: Practical Hours </i>
+      <i>* C: Compulsory <br>* TH: Theorotical Hours <br>* PH: Practical Hours </i>
 </div>
 
 {% endblock body %}
