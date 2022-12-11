@@ -3,8 +3,89 @@
 {% block body %}
 
 <div class="container">
+<br>
+<h5>STUDENT'S INFORMATIONS</h5>
+<div style="max-width:600px; margin:30px 0 auto 0;">
+    <table class="table table-hover">
+        <tbody>
+          <tr>
+            <td class="table-success">School ID</td>
+            <td>{{students.school_id}}</td>
+          </tr>
+          <tr>
+            <td class="table-success">First Name</td>
+            <td>{{students.first_name}}</td>
+          </tr>
+          <tr>
+            <td class="table-success">Last Name</td>
+            <td>{{students.last_name}}</td>
+          </tr>
+          <tr>
+            <td class="table-success">Faculty</td>
+            <td>{{students.faculty}}</td>
+          </tr>
+          <tr>
+            <td class="table-success">Department</td>
+            <td>{{students.department}}</td>
+          </tr>
+          <tr>
+            <td class="table-success">Advisor</td>
+            <td>{{students.advisor}}</td>
+          </tr>
+          <tr>
+            <td class="table-success">Enrolment Date</td>
+            <td>{{students.enrolment_date}}</td>
+          </tr>
+          <tr>
+            <td class="table-success">Status</td>
+            {% if students.status == "Active" %}
+            <td style="color:green;"><b>{{students.status}}</b></td>
+            {% else %}
+            <td>{{students.status}}</td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+</div>
 
-    {{students}}
+<h5>STUDENT'S INSTRUCTIONAL PLAN</h5>
+<br>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Term</th>
+        <th scope="col">Code</th>
+        <th scope="col">Title</th>
+        <th scope="col">T/H</th>
+        <th scope="col">P/H</th>
+        <th scope="col">ECTS</th>
+        <th scope="col">Type</th>
+        <th scope="col">Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for course in inst_plan %}
+        <tr>
+            <th scope="row">{{course.curriculum.term}}</th>
+            <td>{{course.curriculum.code}}</td>
+            <td>{{course.curriculum.title}}</td>
+            <td>{{course.curriculum.theortical_hours}}</td>
+            <td>{{course.curriculum.practical_hours}}</td>
+            <td>{{course.curriculum.ects}}</td>
+            <td>{{course.curriculum.course_type}}</td>
+            <td>{{course.grade}}</td>
+
+          </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
+
+
+  <i>* C: Compulsory <br>* T/H: Theorotical Hours <br>* P/H: Practical Hours<br>* NA: Not Assigned </i>
+
+      
 
 
 </div>

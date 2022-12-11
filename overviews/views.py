@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.db.models import Sum
 
-from registrations.models import Students, Departments, Curriculums
+from registrations.models import Students, Departments, Curriculums, InstructionalPlan
 
 # Create your views here.
 
@@ -31,3 +31,12 @@ def curriculum_view(request, dep_id):
 
 class StudentsDetailView(DetailView):
     model = Students
+
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        inst_plan = InstructionalPlan.objects.filter(student_id = self.kwargs.get('pk')).order_by('curriculum__term')
+        context["inst_plan"] = inst_plan
+        return context
+    
